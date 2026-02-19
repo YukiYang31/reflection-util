@@ -157,6 +157,7 @@ checkerFramework {
     "org.checkerframework.checker.index.IndexChecker",
     "org.checkerframework.checker.interning.InterningChecker",
     "org.checkerframework.checker.lock.LockChecker",
+    "org.checkerframework.checker.modifiability.ModifiabilityChecker",
     "org.checkerframework.checker.nullness.NullnessChecker",
     "org.checkerframework.checker.regex.RegexChecker",
     "org.checkerframework.checker.resourceleak.ResourceLeakChecker",
@@ -175,6 +176,16 @@ checkerFramework {
   ]
 }
 
+
+// To use a locally-built Checker Framework, run gradle with "-PcfLocal".
+if (project.hasProperty("cfLocal")) {
+  def cfHome = String.valueOf(System.getenv("CHECKERFRAMEWORK"))
+  dependencies {
+    compileOnly(files(cfHome + "/checker/dist/checker-qual.jar"))
+    testCompileOnly(files(cfHome + "/checker/dist/checker-qual.jar"))
+    checkerFramework(files(cfHome + "/checker/dist/checker.jar"))
+  }
+}
 
 // Javadoc
 
