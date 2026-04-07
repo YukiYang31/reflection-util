@@ -16,6 +16,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.StringTokenizer;
 import org.checkerframework.checker.interning.qual.Interned;
+import org.checkerframework.checker.modifiability.qual.Modifiable;
 import org.checkerframework.checker.mustcall.qual.MustCallUnknown;
 import org.checkerframework.checker.mustcall.qual.PolyMustCall;
 import org.checkerframework.checker.nullness.qual.MonotonicNonNull;
@@ -281,7 +282,7 @@ public final class ReflectionPlume {
    * array of Class objects, one for each arg type. Example keys include: "java.lang.String,
    * java.lang.String, java.lang.Class[]" and "int,int".
    */
-  private static final HashMap<String, Class<?>[]> args_seen = new HashMap<>();
+  private static final @Modifiable HashMap<String, Class<?>[]> args_seen = new HashMap<>();
 
   /**
    * Given a method signature, return the method.
